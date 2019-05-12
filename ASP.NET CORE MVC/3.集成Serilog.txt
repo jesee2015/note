@@ -1,0 +1,33 @@
+asp.net core提供了一套log api，他可以和各种log提供商配合
+1.Console
+2.Debug
+3.EventSource
+4.EventLog
+5.TraceSource
+6.Azure App Service
+
+第三方Log提供商
+- NLog
+- Serilog
+
+使用ILogger接口
+依赖注入ILogger<TCategoryName>
+
+添加serilog
+1、install-package Serilog
+2、install-package Serilog.AspNetCore-DependencyVersion Highest
+
+3、install-package Serilog.Sinks.Console
+   install-package Serilog.Sinks.File
+   
+配置Serilog
+	Log.Logger = new LoggerConfiguration()
+		.MinimumLevel.Debug()
+		.MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+		.Enrich.FromLogContext()
+		.WriteTo.Console()
+		.WriteTo.File(Path.Combine("logs", @"log.txt"), rollingInterval: RollingInterval.Day)
+		.CreateLogger();
+使用Serilog
+	.UseSerilog();
+	
