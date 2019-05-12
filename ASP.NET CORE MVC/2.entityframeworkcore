@@ -1,0 +1,26 @@
+建立和注册Context
+1、安装相关的包
+- Microsoft.EntityFrameworkCore.Design//命令行用来迁移用
+- Microsoft.EntityFrameworkCore.Sqlite//安装数据提供商的包
+
+2、建立Context
+- 建立Entities
+- 建立Context，继承于DbContext
+
+3、在Startup里注册Context
+- services.AddDbContext<MyDbContext>(...);
+
+数据库迁移
+1.add-migration xx  //添加迁移
+2.update-database	//更新到数据库
+
+采用unit of work + Repository模式
+
+- 为什么使用repository
+1、与持久化无关
+2、易于测试
+3、代码重用
+
+Entity的约束
+- 使用IEntityTypeConfiguration<TEntity>
+- DbContext里的OnModelCreating()

@@ -1,0 +1,99 @@
+依赖注入，IOC容器
+. 生命周期
+1、Transient:每次被请求都会创建新的实例
+2、Scoped：每次请求都会创建一个实例
+3、Singleton：一旦被创建实例，就会一直使用这个实例，直到应用停止
+
+包的安装
+1、ASP.NET Core服务器 --Nuget
+2、客户端 -- NPM
+
+打开cmd 
+node --version
+npm --version
+
+前端工具
+1、Npm：package.json
+2、Bundle 和minify：bundleConfig.json		
+
+新建bundleConfig.json，打包css和js文件
+[
+  {
+    "outputFileName": "wwwroot/css/all.mini.css",
+    "inputFiles": [
+      "node_modules/bootstrap/dist/css/bootstrap.css"
+    ]
+  }
+]
+
+3、nuget下载BuildBundlerMinifier包
+
+==============================================
+app.UseStatusCodePages();//使用自定义错误页面
+app.UseStaticFiles();//使用静态文件
+
+环境变量
+1、env.IsDevelopment();//是否是开发环境
+2、env.IsProduction();//是否是生产环境
+3、env.IsStaging();//是否是准备上线阶段的环境
+4、env.IsEnvironment("QA");//是否是自定义的QA环境
+
+
+根据环境调用不同的Startup类
+1、StartupDevelopment
+2、StartupStaging
+3、StartupProduction
+
+在program里面根据环境不同使用不同的startup
+默认：.UseStartup<Startup>();
+修改：.UseStartup(typeof(StartupDevelopmen).GetTypeInfo().Assembly.FullName);
+
+参考：https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/environments?view=aspnetcore-2.2
+
+使用https
+1.在ConfigureServices里面配置
+service.addHttpsRedirection()
+2.配置中间件
+app.UseHttpsRedirection();
+参考：https://docs.microsoft.com/zh-cn/aspnet/core/security/enforcing-ssl?view=aspnetcore-2.2&tabs=visual-studio#require-https
+mvc
+1.Controller
+2.Action
+3.Filter
+4.Model Binding
+5.Routing
+6.Attribute
+
+部署asp.net core应用
+
+github push步骤
+1.创建一个空的git repository，gitignore选择visual studio
+2.在本地使用git clone 将仓库下载到本地
+3.把项目文件拷贝到本地仓库
+4.使用git add .命令将本地文件提交到缓存
+5.使用git commit . -m 'firstcommit'将缓存文件提交
+6.使用git push origin master命令将文件推送到远程仓库
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
